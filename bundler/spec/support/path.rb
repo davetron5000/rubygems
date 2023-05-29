@@ -42,7 +42,12 @@ module Spec
     end
 
     def dev_gemfile
-      @dev_gemfile ||= tool_dir.join("dev_gems.rb")
+      filename = if RUBY_VERSION.start_with?("2.6")
+        "dev26_gems.rb"
+      else
+        "dev_gems.rb"
+      end
+      @dev_gemfile ||= tool_dir.join(filename)
     end
 
     def bindir
